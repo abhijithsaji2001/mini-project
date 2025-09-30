@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner{
+            width:100%;
+        }
+    
+        .text-cont{
+            width: 30vw;
+            position: absolute;
+            left: 50px;
+        }
+        .image_cont{
+            width:100%;
+            display: flex;
+            align-items: center;
+        }
+        .carosel-local{
+            width:70vw;
+            margin: auto;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+{% load static %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <div class="image_cont">
+        <img class="banner" src="{% static 'images/slider-bg.jpg' %}" alt="Example Image">
+        <div class="text-cont">
+            <h1 class="fs-2 d-none d-lg-block"><i>"Shopsy is your trusted online shopping destination, offering a wide range of quality products across fashion,
+                electronics, home essentials, Shopsy makes your
+                shopping experience simple, convenient, and seamless."</i></h1>
+            <h1 class="fs-4 d-none d-sm-none d-md-block d-lg-none"><i>"Shopsy is your trusted online shopping destination, offering a wide range of quality products across fashion,
+                electronics, home essentials, Shopsy makes your
+                shopping experience simple, convenient, and seamless."</i></h1>
+            <h1 class="fs-6 d-none d-sm-block d-md-none d-lg-none"><i>"Shopsy is your trusted online shopping destination, offering a wide range of quality products across fashion,
+                electronics, home essentials, Shopsy makes your
+                shopping experience simple, convenient, and seamless."</i></h1>
+            <h1 class="fs-6 d-block d-sm-none d-md-none d-lg-none"><i>"Shopsy is your trusted online shopping destination, offering a wide range of quality products across fashion,
+                electronics, home essentials, Shopsy makes your
+                shopping experience simple, convenient, and seamless."</i></h1>
+        </div>
+    </div>
+    <h1 style=" text-align:center;"><i>Latest Offers And Deals</i></h1>
+    
+    <div class="carosel-local">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="{% url 'product_shoes' %}" >
+                        <img class="d-block w-100" src="{% static 'images/image1.jpg' %}" alt="First slide" style="border-radius: 30px; object-fit:cover;">
+                    </a>
+                    </div>
+                <div class="carousel-item">
+                    <a href="{% url 'product_grocery' %}" >
+                        <img class="d-block w-100" src="{% static 'images/grocery 2.jpg' %}" alt="Second slide" style="border-radius: 30px; object-fit:cover;">
+                    </a>
+                    </div>
+                <div class="carousel-item">
+                    <a href="{% url 'product_dress' %}" >
+                        <img class="d-block w-100" src="{% static 'images/dress.jpg' %}" alt="Third slide" style="border-radius: 30px; object-fit:cover;">
+                    </a>
+                    </div>
+                <div class="carousel-item">
+                    <a href="{% url 'product_cosmetics' %}" >
+                        <img class="d-block w-100" src="{% static 'images/cosmetics.jpg' %}" alt="Fourth slide" style="border-radius: 30px; style="object-fit:cover;"">
+                    </a>
+                    </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+
+            
+    
+    <br><br><br><br>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+</body>
+</html>
+

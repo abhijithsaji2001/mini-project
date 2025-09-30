@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .product-image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .product-details {
+      flex: 1 1 400px;
+    }
+
+    .product-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .product-description {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .seller {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      margin-bottom: 20px;
+    }
+
+    
+    .special-price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: green;
+    }
+
+    .actual-price {
+      font-size: 1.1rem;
+      color: #888;
+      text-decoration: line-through;
+      margin-left: 10px;
+    }
+
+    .cart {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cart input {
+      width: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .cart button {
+      padding: 8px 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .cart button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+{% load static %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <div class="container">
+
+        <div class="product-image">
+        <img src="{{ product.image.url }}" alt="Sneakers">
+        </div>
+
+        <div class="product-details">
+            <div class="product-title">{{ product.title }}</div>
+            <div class="product-description">
+                <strong>Description:</strong> {{ product.description }}
+            </div>
+            <div class="seller">
+                <strong>Seller:</strong> {{ product.seller }}
+            </div>
+            <div class="price">
+                <span class="special-price">₹{{ product.price }}</span>
+                <span class="actual-price">₹{{ product.actual_price }}</span>
+            </div>
+            <div class="cart">
+                <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                    <input type="hidden" name="username" value="{{ user.id }}">
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="number" name="quantity" value="1" min="1">
+                    <button type="submit">Add to Cart</button>
+                </form>    
+            </div>
+        </div>
+  </div>
+
+</body>
+</html>

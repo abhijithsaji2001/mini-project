@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+        }
+
+        .container {
+            width: 90%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap : 70px;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            width: 300px;
+            height: 350px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .product-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #28a745;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .btn1 {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px 5px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn1:first-of-type {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn1:first-of-type:hover {
+            background: #0056b3;
+        }
+
+        .btn1:last-of-type {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn1:last-of-type:hover {
+            background: #1e7e34;
+        }
+
+    </style>
+</head>
+<body>
+{% load static %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+        <h1>Top Picks</h1>
+
+        <div class="container">
+            {% for products_obj in products %}
+                <div class="product-card">
+                    <img src="{{ products_obj.image.url }}" alt="Product 1">
+                    <h3>{{ products_obj.title }}</h3>
+                    <p>{{ products_obj.price }}</p>
+                    <a href="{% url 'product_detail' products_obj.id %}" class="btn">View Details</a>
+                    <a href="#" class="btn1">Add to Cart</a>
+                </div>
+            {% empty %}
+                <p>No products found.</p>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+</body>
+</html>
+
