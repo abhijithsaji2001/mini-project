@@ -129,6 +129,7 @@
             </div>
             <div class="cart">
                 <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <input type="hidden" name="username" value="{{ user.id }}">
                     <input type="hidden" name="product_id" value="{{ product.id }}">
                     <input type="number" name="quantity" value="1" min="1">

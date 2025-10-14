@@ -10,7 +10,7 @@ from django.contrib import messages
 
 
 # Create your views here.
-@login_required (login_url='login')
+@login_required (login_url='login_page')
 def cart(request):
     order = Order.objects.filter(user=request.user, order_status=Order.CART_STAGE).first()
     order_items = order.items.all()
@@ -29,7 +29,7 @@ def remove_from_cart(request, item_id):
     return redirect('cart/')
 
 
-@login_required (login_url='login')
+@login_required (login_url='login_page')
 def add_to_cart(request):
     if request.method == "POST":
         customer = request.POST.get("username")
